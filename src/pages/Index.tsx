@@ -14,8 +14,16 @@ const Index = () => {
       <NavBar />
       
       {/* Hero Section with Form */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-park-blue to-blue-500 text-white contact-form-section">
-        <div className="container mx-auto px-4">
+      <section 
+        className="py-16 md:py-24 text-white contact-form-section relative"
+        style={{
+          backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('/lovable-uploads/9b6844db-a602-402b-80e6-5f9a74e5b36f.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat"
+        }}
+      >
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-8">
