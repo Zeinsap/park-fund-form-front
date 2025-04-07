@@ -50,23 +50,23 @@ const ContactForm = () => {
     
     const url = "https://script.google.com/macros/s/AKfycbxX0XHyMSzsI5SYTpa8_1VhkBM2VwQO7Q4i5uxu-uWu6HlyOeO8kzF90Mp5i7u-ws-RNg/exec";
     
-    const submissionData = {
-      "Prénom": formData.firstName,
-      "Nom": formData.lastName,
-      "Email": formData.email,
-      "Téléphone": `+33${formData.phone}`, // Adding French country code
-      "utm_source": getCookieValue("utm_source"),
-      "utm_medium": getCookieValue("utm_medium"),
-      "utm_campaign": getCookieValue("utm_campaign"),
-      "utm_term": getCookieValue("utm_term"),
-      "utm_content": getCookieValue("utm_content")
-    };
+    // Create form data for submission
+    const formDataObj = new FormData();
+    
+    // Add form fields directly
+    formDataObj.append('Prénom', formData.firstName);
+    formDataObj.append('Nom', formData.lastName);
+    formDataObj.append('Email', formData.email);
+    formDataObj.append('Téléphone', `+33${formData.phone}`);
+    
+    // Add UTM parameters from cookies
+    formDataObj.append('utm_source', getCookieValue('utm_source'));
+    formDataObj.append('utm_medium', getCookieValue('utm_medium'));
+    formDataObj.append('utm_campaign', getCookieValue('utm_campaign'));
+    formDataObj.append('utm_term', getCookieValue('utm_term'));
+    formDataObj.append('utm_content', getCookieValue('utm_content'));
 
     try {
-      // Create a form data object for submission
-      const formDataObj = new FormData();
-      formDataObj.append('data', JSON.stringify(submissionData));
-      
       // Use XMLHttpRequest to avoid page redirect
       const xhr = new XMLHttpRequest();
       xhr.open('POST', url, true);
