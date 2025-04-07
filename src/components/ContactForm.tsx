@@ -14,6 +14,7 @@ const ContactForm = () => {
     email: '',
     phone: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -37,18 +38,57 @@ const ContactForm = () => {
     setStep(1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Function to get cookie value
+  const getCookieValue = (name: string) => {
+    const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return match ? decodeURIComponent(match[2]) : '';
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would send this data to your backend
-    console.log('Form submitted:', formData);
-    toast.success("Merci pour votre intérêt ! Un conseiller vous contactera dans les 24 heures.");
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: ''
-    });
-    setStep(1);
+    setIsSubmitting(true);
+    
+    const url = "https://script.google.com/macros/s/AKfycbxX0XHyMSzsI5SYTpa8_1VhkBM2VwQO7Q4i5uxu-uWu6HlyOeO8kzF90Mp5i7u-ws-RNg/exec";
+    
+    const submissionData = {
+      "Prénom": formData.firstName,
+      "Nom": formData.lastName,
+      "Email": formData.email,
+      "Téléphone": `+33${formData.phone}`, // Adding French country code
+      "utm_source": getCookieValue("utm_source"),
+      "utm_medium": getCookieValue("utm_medium"),
+      "utm_campaign": getCookieValue("utm_campaign"),
+      "utm_term": getCookieValue("utm_term"),
+      "utm_content": getCookieValue("utm_content")
+    };
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(submissionData)
+      });
+
+      const result = await response.text();
+      setIsSubmitting(false);
+      
+      if (result.includes("Success")) {
+        toast.success("Merci ! Un conseiller vous contactera dans les 24 heures.");
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: ''
+        });
+        setStep(1);
+      } else {
+        toast.error("Erreur lors de l'envoi : " + result);
+      }
+    } catch (error) {
+      setIsSubmitting(false);
+      toast.error("Erreur de connexion. Veuillez réessayer.");
+      console.error("Form submission error:", error);
+    }
   };
 
   return (
@@ -97,7 +137,11 @@ const ContactForm = () => {
             className="bg-white border-0"
           />
           
-          <Button type="submit" className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold">
+          <Button 
+            type="submit" 
+            className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold"
+            disabled={isSubmitting}
+          >
             Suivant
           </Button>
         </form>
@@ -111,7 +155,7 @@ const ContactForm = () => {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              placeholder="Téléphone"
+              placeholder="Téléphone (sans +33)"
               required
               className="bg-white border-0 pl-12"
               type="tel"
@@ -124,14 +168,16 @@ const ContactForm = () => {
               type="button" 
               onClick={handlePrevious}
               className="bg-gray-700 hover:bg-gray-800 text-white"
+              disabled={isSubmitting}
             >
-              Previous
+              Retour
             </Button>
             <Button 
               type="submit" 
               className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold"
+              disabled={isSubmitting}
             >
-              Je veux être contacté
+              {isSubmitting ? 'Envoi en cours...' : 'Je veux être contacté'}
             </Button>
           </div>
         </form>

@@ -9,6 +9,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Park Fund</title>
+    <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const utmKeys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+      utmKeys.forEach(key => {
+        const value = params.get(key);
+        if (value) {
+          document.cookie = key + "=" + encodeURIComponent(value) + "; path=/; max-age=" + 60 * 60 * 24 * 30;
+        }
+      });
+    })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
