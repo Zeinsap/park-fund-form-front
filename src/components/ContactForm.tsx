@@ -105,14 +105,7 @@ const ContactForm = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="relative">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <div className="flex items-center gap-1">
-                <div className="h-4 w-6 bg-blue-600 relative">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="h-4 w-4 bg-red-500 rounded-full"></div>
-                  </div>
-                </div>
-                <PhoneIcon className="h-4 w-4 text-gray-500" />
-              </div>
+              <PhoneIcon className="h-4 w-4 text-gray-500" />
             </div>
             <Input 
               name="phone"
@@ -120,7 +113,7 @@ const ContactForm = () => {
               onChange={handleChange}
               placeholder="Téléphone"
               required
-              className="bg-white border-0 pl-16"
+              className="bg-white border-0 pl-12"
               type="tel"
               inputMode="numeric"
             />
