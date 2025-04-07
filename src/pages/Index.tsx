@@ -16,7 +16,7 @@ const Index = () => {
       <section 
         className="py-16 md:py-24 text-white contact-form-section relative"
         style={{
-          backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('/lovable-uploads/9b6844db-a602-402b-80e6-5f9a74e5b36f.png')",
+          backgroundImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('/lovable-uploads/cf28557f-a36a-49d0-913d-4ea2e4ccc7c6.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -45,7 +45,6 @@ const Index = () => {
                 </a>
               </div>
 
-              {/* Partners section with new clean logo image */}
               <div className="mt-10">
                 <p className="text-base text-gray-200 mb-3">En partenariat avec</p>
                 <div className="flex items-center gap-8 p-4 rounded-lg">
