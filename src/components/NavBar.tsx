@@ -19,7 +19,7 @@ const NavBar = () => {
             className="hidden md:inline-flex border-park-blue text-park-blue hover:bg-park-blue hover:text-white text-base"
             onClick={() => document.querySelector('.contact-form-section')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Découvrir cette opportunité rentable
+            Découvrir cette opportunité
           </Button>
           <Button className="md:hidden" size="icon" variant="ghost">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
