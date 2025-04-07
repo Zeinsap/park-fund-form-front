@@ -17,7 +17,7 @@ const NavBar = () => {
           <img 
             src="/lovable-uploads/e770a819-1b9f-42e5-869e-5397562b1b04.png" 
             alt="Two Zero Solution Logo" 
-            className="h-10 md:h-12"
+            className="h-14 md:h-16" // Increased height from h-10 md:h-12 to h-14 md:h-16
           />
         </div>
         
