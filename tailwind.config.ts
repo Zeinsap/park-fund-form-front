@@ -19,6 +19,9 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Poppins', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -82,6 +85,15 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
+			},
+			fontSize: {
+				'base': '1.1rem', // Increase base font size
+				'lg': '1.25rem',
+				'xl': '1.35rem',
+				'2xl': '1.6rem',
+				'3xl': '1.875rem',
+				'4xl': '2.5rem',
+				'5xl': '3.2rem',
 			}
 		}
 	},
