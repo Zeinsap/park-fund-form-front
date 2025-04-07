@@ -5,7 +5,7 @@ import ContactForm from '@/components/ContactForm';
 import FeatureCard from '@/components/FeatureCard';
 import FaqSection from '@/components/FaqSection';
 import Footer from '@/components/Footer';
-import { CircleParkingIcon, MapPinIcon, ParkingMeterIcon } from 'lucide-react';
+import { CircleParkingIcon, MapPinIcon, ParkingMeterIcon, CarIcon, ZapIcon } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -17,14 +17,21 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Invest in Premium Parking Assets</h1>
-              <p className="text-xl mb-8">Join Park Fund and secure your financial future with stable, high-yield parking lot investments.</p>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                Investissez dans <span className="text-yellow-400">l'avenir</span> de la mobilité électrique <CarIcon className="inline-block h-8 w-8 mx-2" /> <ZapIcon className="inline-block h-8 w-8 text-yellow-400" />
+              </h1>
+              <p className="text-xl mb-4">Profitez de la croissance rapide des infrastructures de recharge en France.</p>
+              
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold mb-2">Rentabilité et impact durable</h3>
+                <p className="text-lg">
+                  Associez votre investissement à un avenir plus vert, avec des rendements stables pouvant atteindre 7 %.
+                </p>
+              </div>
+              
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="#benefits" className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-park-blue hover:bg-gray-100 h-10 px-4 py-2">
-                  Learn More
-                </a>
-                <a href="#faq" className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-white text-white hover:bg-white/10 h-10 px-4 py-2">
-                  How It Works
+                <a href="#benefits" className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-yellow-400 text-park-dark hover:bg-yellow-300 h-10 px-4 py-2">
+                  Découvrir cette opportunité rentable →
                 </a>
               </div>
             </div>
