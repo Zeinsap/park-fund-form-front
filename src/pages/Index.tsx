@@ -1,4 +1,3 @@
-
 import React from 'react';
 import NavBar from '@/components/NavBar';
 import ContactForm from '@/components/ContactForm';
@@ -114,14 +113,9 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Gallery Section - NEW */}
+      {/* Gallery Section - Modified */}
       <section className="py-16 bg-gray-100">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-park-dark">Notre galerie de parkings</h2>
-            <p className="text-xl text-gray-600">Découvrez nos infrastructures de parking modernes et bien entretenues</p>
-          </div>
-          
           <div className="max-w-5xl mx-auto px-8">
             <Carousel className="w-full">
               <CarouselContent>
@@ -131,14 +125,10 @@ const Index = () => {
                       <AspectRatio ratio={16/9}>
                         <img 
                           src="/lovable-uploads/5ce75069-8a7a-429d-8332-d18847464514.png" 
-                          alt="Parking intérieur avec éclairage bleu" 
+                          alt="Parking intérieur" 
                           className="w-full h-full object-cover"
                         />
                       </AspectRatio>
-                      <div className="p-4 bg-park-dark text-white">
-                        <h3 className="text-xl font-semibold">Parking intérieur sécurisé</h3>
-                        <p className="text-gray-200">Système d'éclairage moderne et surveillance 24/7</p>
-                      </div>
                     </CardContent>
                   </Card>
                 </CarouselItem>
@@ -149,14 +139,10 @@ const Index = () => {
                       <AspectRatio ratio={16/9}>
                         <img 
                           src="/lovable-uploads/d95c30d7-03cf-467c-9e5f-f1d191bd1234.png" 
-                          alt="Parking sur le toit avec lampadaires" 
+                          alt="Parking sur le toit" 
                           className="w-full h-full object-cover"
                         />
                       </AspectRatio>
-                      <div className="p-4 bg-park-dark text-white">
-                        <h3 className="text-xl font-semibold">Parking en terrasse</h3>
-                        <p className="text-gray-200">Emplacement idéal pour l'installation de bornes de recharge solaires</p>
-                      </div>
                     </CardContent>
                   </Card>
                 </CarouselItem>
@@ -171,10 +157,6 @@ const Index = () => {
                           className="w-full h-full object-cover"
                         />
                       </AspectRatio>
-                      <div className="p-4 bg-park-dark text-white">
-                        <h3 className="text-xl font-semibold">Organisation optimale</h3>
-                        <p className="text-gray-200">Places numérotées et signalisation claire pour faciliter l'accès</p>
-                      </div>
                     </CardContent>
                   </Card>
                 </CarouselItem>
@@ -185,14 +167,10 @@ const Index = () => {
                       <AspectRatio ratio={16/9}>
                         <img 
                           src="/lovable-uploads/084d1306-270d-49cf-b96e-47b02194d149.png" 
-                          alt="Vue aérienne d'un parking avec voitures" 
+                          alt="Vue aérienne d'un parking" 
                           className="w-full h-full object-cover"
                         />
                       </AspectRatio>
-                      <div className="p-4 bg-park-dark text-white">
-                        <h3 className="text-xl font-semibold">Gestion optimisée de l'espace</h3>
-                        <p className="text-gray-200">Emplacements adaptés aux différents types de véhicules</p>
-                      </div>
                     </CardContent>
                   </Card>
                 </CarouselItem>
