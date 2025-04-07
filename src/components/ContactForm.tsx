@@ -63,27 +63,33 @@ const ContactForm = () => {
     };
 
     try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(submissionData)
-      });
-
-      const result = await response.text();
-      setIsSubmitting(false);
+      // Using JSONP approach with form submission to bypass CORS issues
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = url;
+      form.target = '_blank'; // Opens response in a new tab
       
-      if (result.includes("Success")) {
-        toast.success("Merci ! Un conseiller vous contactera dans les 24 heures.");
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: ''
-        });
-        setStep(1);
-      } else {
-        toast.error("Erreur lors de l'envoi : " + result);
-      }
+      // Create a hidden input field for the JSON data
+      const hiddenField = document.createElement('input');
+      hiddenField.type = 'hidden';
+      hiddenField.name = 'data';
+      hiddenField.value = JSON.stringify(submissionData);
+      form.appendChild(hiddenField);
+      
+      // Append form to the document, submit it, and remove it
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+      
+      setIsSubmitting(false);
+      toast.success("Merci ! Un conseiller vous contactera dans les 24 heures.");
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: ''
+      });
+      setStep(1);
     } catch (error) {
       setIsSubmitting(false);
       toast.error("Erreur de connexion. Veuillez réessayer.");
