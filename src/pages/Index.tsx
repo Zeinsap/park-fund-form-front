@@ -35,14 +35,14 @@ const Index = () => {
                 </a>
               </div>
 
-              {/* Partners section */}
+              {/* Partners section - Redesigned */}
               <div className="mt-8">
                 <p className="text-sm text-gray-200 mb-3">En partenariat avec</p>
-                <div className="bg-[#2D3A3F] p-3 md:p-4 rounded flex items-center justify-between">
+                <div className="flex items-center gap-6 bg-white/10 backdrop-blur-sm p-4 rounded-lg">
                   <img 
                     src="/lovable-uploads/ee4579b7-d423-47c1-996a-16294ec09f5c.png" 
                     alt="Partenaires: Yespark, Vinci Immobilier, Indigo" 
-                    className="w-full h-auto"
+                    className="w-full h-auto max-w-xs mix-blend-luminosity hover:mix-blend-normal transition-all duration-300 opacity-80 hover:opacity-100"
                   />
                 </div>
               </div>
