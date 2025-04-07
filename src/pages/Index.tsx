@@ -105,9 +105,19 @@ const Index = () => {
         </div>
       </section>
       
-      {/* CTA Section */}
-      <section className="py-20 bg-park-blue text-white">
-        <div className="container mx-auto px-4 text-center">
+      {/* CTA Section with Night Parking Image */}
+      <section className="py-20 bg-park-blue text-white relative overflow-hidden">
+        {/* Background parking garage image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/lovable-uploads/c8565d33-3e10-49cc-a05d-c9f986382be1.png" 
+            alt="Parking Garage at Night" 
+            className="w-full h-full object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-park-blue/60"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">Prêt à investir dans un avenir durable?</h2>
           <p className="text-2xl mb-10 max-w-2xl mx-auto">
             Découvrez comment les parkings électriques peuvent devenir un levier financier.
