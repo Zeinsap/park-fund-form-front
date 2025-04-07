@@ -1,4 +1,3 @@
-
 import React from 'react';
 import NavBar from '@/components/NavBar';
 import ContactForm from '@/components/ContactForm';
@@ -6,7 +5,6 @@ import FeatureCard from '@/components/FeatureCard';
 import FaqSection from '@/components/FaqSection';
 import Footer from '@/components/Footer';
 import { CircleParkingIcon, MapPinIcon, ParkingMeterIcon, CarIcon, ZapIcon } from 'lucide-react';
-
 const Index = () => {
   return <div className="min-h-screen bg-gray-50">
       <NavBar />
@@ -94,26 +92,6 @@ const Index = () => {
         
       </section>
       
-      {/* Call to Action - Sustainable Investment */}
-      <section className="py-16 md:py-20 bg-slate-700 text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 underline underline-offset-8 decoration-yellow-400">
-              Prêt à investir dans un avenir durable?
-            </h2>
-            <p className="text-xl mb-8">
-              Découvrez comment les parkings électriques peuvent devenir un levier financier.
-            </p>
-            <a 
-              href="#" 
-              className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium bg-cyan-500 hover:bg-cyan-600 text-white transition-colors px-6 py-3"
-            >
-              Commencez dès maintenant →
-            </a>
-          </div>
-        </div>
-      </section>
-      
       {/* Testimonial Section */}
       <section className="py-16">
         
@@ -138,5 +116,4 @@ const Index = () => {
       <Footer />
     </div>;
 };
-
 export default Index;
