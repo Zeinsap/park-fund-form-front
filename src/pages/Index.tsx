@@ -17,6 +17,10 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Card, CardContent } from '@/components/ui/card';
 
 const Index = () => {
+  const scrollToContactForm = () => {
+    document.querySelector('.contact-form-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <NavBar />
@@ -49,7 +53,10 @@ const Index = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="#about" className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-base font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-yellow-400 text-park-dark hover:bg-yellow-300 h-12 px-6 py-3">
+                <a 
+                  className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-base font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-yellow-400 text-park-dark hover:bg-yellow-300 h-12 px-6 py-3 cursor-pointer"
+                  onClick={scrollToContactForm}
+                >
                   Découvrir cette opportunité →
                 </a>
               </div>
@@ -205,7 +212,7 @@ const Index = () => {
           <Button 
             variant="default" 
             className="bg-white text-park-blue hover:bg-gray-100 h-12 px-6 md:px-10 py-3 text-base md:text-lg"
-            onClick={() => document.querySelector('.contact-form-section')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={scrollToContactForm}
           >
             Commencez dès maintenant →
           </Button>
