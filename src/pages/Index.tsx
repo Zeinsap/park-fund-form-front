@@ -4,8 +4,17 @@ import NavBar from '@/components/NavBar';
 import ContactForm from '@/components/ContactForm';
 import FeatureCard from '@/components/FeatureCard';
 import Footer from '@/components/Footer';
-import { CircleParkingIcon, MapPinIcon, ParkingMeterIcon, CarIcon, ZapIcon, BarChart3Icon, CircleDollarSignIcon, GlobeIcon } from 'lucide-react';
+import { CircleParkingIcon, MapPinIcon, ParkingMeterIcon, CarIcon, ZapIcon, BarChart3Icon, CircleDollarSignIcon, GlobeIcon, ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from '@/components/ui/carousel';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { Card, CardContent } from '@/components/ui/card';
 
 const Index = () => {
   return (
@@ -101,6 +110,98 @@ const Index = () => {
               <h3 className="text-2xl font-bold mb-4 text-park-dark">Investissement écologique</h3>
               <p className="text-lg text-gray-600">Contribuez à la transition énergétique tout en faisant fructifier votre capital.</p>
             </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Gallery Section - NEW */}
+      <section className="py-16 bg-gray-100">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-park-dark">Notre galerie de parkings</h2>
+            <p className="text-xl text-gray-600">Découvrez nos infrastructures de parking modernes et bien entretenues</p>
+          </div>
+          
+          <div className="max-w-5xl mx-auto px-8">
+            <Carousel className="w-full">
+              <CarouselContent>
+                <CarouselItem>
+                  <Card className="border-0 shadow-lg overflow-hidden">
+                    <CardContent className="p-0">
+                      <AspectRatio ratio={16/9}>
+                        <img 
+                          src="/lovable-uploads/5ce75069-8a7a-429d-8332-d18847464514.png" 
+                          alt="Parking intérieur avec éclairage bleu" 
+                          className="w-full h-full object-cover"
+                        />
+                      </AspectRatio>
+                      <div className="p-4 bg-park-dark text-white">
+                        <h3 className="text-xl font-semibold">Parking intérieur sécurisé</h3>
+                        <p className="text-gray-200">Système d'éclairage moderne et surveillance 24/7</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+                
+                <CarouselItem>
+                  <Card className="border-0 shadow-lg overflow-hidden">
+                    <CardContent className="p-0">
+                      <AspectRatio ratio={16/9}>
+                        <img 
+                          src="/lovable-uploads/d95c30d7-03cf-467c-9e5f-f1d191bd1234.png" 
+                          alt="Parking sur le toit avec lampadaires" 
+                          className="w-full h-full object-cover"
+                        />
+                      </AspectRatio>
+                      <div className="p-4 bg-park-dark text-white">
+                        <h3 className="text-xl font-semibold">Parking en terrasse</h3>
+                        <p className="text-gray-200">Emplacement idéal pour l'installation de bornes de recharge solaires</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+                
+                <CarouselItem>
+                  <Card className="border-0 shadow-lg overflow-hidden">
+                    <CardContent className="p-0">
+                      <AspectRatio ratio={16/9}>
+                        <img 
+                          src="/lovable-uploads/95bcbd1e-7127-4fef-a5ae-2cb670493b87.png" 
+                          alt="Places de parking numérotées" 
+                          className="w-full h-full object-cover"
+                        />
+                      </AspectRatio>
+                      <div className="p-4 bg-park-dark text-white">
+                        <h3 className="text-xl font-semibold">Organisation optimale</h3>
+                        <p className="text-gray-200">Places numérotées et signalisation claire pour faciliter l'accès</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+                
+                <CarouselItem>
+                  <Card className="border-0 shadow-lg overflow-hidden">
+                    <CardContent className="p-0">
+                      <AspectRatio ratio={16/9}>
+                        <img 
+                          src="/lovable-uploads/084d1306-270d-49cf-b96e-47b02194d149.png" 
+                          alt="Vue aérienne d'un parking avec voitures" 
+                          className="w-full h-full object-cover"
+                        />
+                      </AspectRatio>
+                      <div className="p-4 bg-park-dark text-white">
+                        <h3 className="text-xl font-semibold">Gestion optimisée de l'espace</h3>
+                        <p className="text-gray-200">Emplacements adaptés aux différents types de véhicules</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              </CarouselContent>
+              <div className="flex justify-center mt-8">
+                <CarouselPrevious className="relative static -left-0 -translate-y-0 mr-4" />
+                <CarouselNext className="relative static -right-0 -translate-y-0 ml-4" />
+              </div>
+            </Carousel>
           </div>
         </div>
       </section>
