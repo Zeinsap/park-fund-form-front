@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
 import { PhoneIcon } from "lucide-react";
 
 const ContactForm = () => {
@@ -13,18 +12,20 @@ const ContactForm = () => {
     firstName: '',
     lastName: '',
     email: '',
-    phone: '',
-    otpCode: ''
+    phone: ''
   });
-  const [isValidatingPhone, setIsValidatingPhone] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleOtpChange = (value: string) => {
-    setFormData(prev => ({ ...prev, otpCode: value }));
+    
+    // For phone field, only allow numeric input
+    if (name === 'phone') {
+      // Replace any non-digit character with empty string
+      const numericValue = value.replace(/\D/g, '');
+      setFormData(prev => ({ ...prev, [name]: numericValue }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleNext = (e: React.FormEvent) => {
@@ -36,16 +37,6 @@ const ContactForm = () => {
     setStep(1);
   };
 
-  const validatePhone = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (!formData.phone) {
-      toast.error("Veuillez saisir un numéro de téléphone");
-      return;
-    }
-    setIsValidatingPhone(true);
-    toast.success("Code de validation envoyé");
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real application, you would send this data to your backend
@@ -55,11 +46,9 @@ const ContactForm = () => {
       firstName: '',
       lastName: '',
       email: '',
-      phone: '',
-      otpCode: ''
+      phone: ''
     });
     setStep(1);
-    setIsValidatingPhone(false);
   };
 
   return (
@@ -132,49 +121,26 @@ const ContactForm = () => {
               placeholder="Téléphone"
               required
               className="bg-white border-0 pl-16"
+              type="tel"
+              inputMode="numeric"
             />
           </div>
           
-          {!isValidatingPhone ? (
+          <div className="grid grid-cols-2 gap-4">
             <Button 
               type="button" 
-              onClick={validatePhone}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              onClick={handlePrevious}
+              className="bg-gray-700 hover:bg-gray-800 text-white"
             >
-              valider mon numéro
+              Previous
             </Button>
-          ) : (
-            <div className="space-y-4">
-              <div className="bg-white rounded p-2">
-                <InputOTP maxLength={6} value={formData.otpCode} onChange={handleOtpChange}>
-                  <InputOTPGroup>
-                    <InputOTPSlot index={0} />
-                    <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
-                    <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
-                  </InputOTPGroup>
-                </InputOTP>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <Button 
-                  type="button" 
-                  onClick={handlePrevious}
-                  className="bg-gray-700 hover:bg-gray-800 text-white"
-                >
-                  Previous
-                </Button>
-                <Button 
-                  type="submit" 
-                  className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold"
-                >
-                  Je veux être contacté
-                </Button>
-              </div>
-            </div>
-          )}
+            <Button 
+              type="submit" 
+              className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold"
+            >
+              Je veux être contacté
+            </Button>
+          </div>
         </form>
       )}
     </div>
