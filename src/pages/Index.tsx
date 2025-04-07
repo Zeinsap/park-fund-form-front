@@ -6,6 +6,7 @@ import FeatureCard from '@/components/FeatureCard';
 import FaqSection from '@/components/FaqSection';
 import Footer from '@/components/Footer';
 import { CircleParkingIcon, MapPinIcon, ParkingMeterIcon, CarIcon, ZapIcon, BarChart3Icon, CircleDollarSignIcon, GlobeIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const Index = () => {
   return (
@@ -172,13 +173,13 @@ const Index = () => {
       {/* CTA Section */}
       <section className="py-16 bg-park-blue text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Investing?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Prêt à investir dans un avenir durable?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Join Park Fund today and discover how parking investments can provide stable returns and portfolio diversification.
+            Découvrez comment les parkings électriques peuvent devenir un levier financier.
           </p>
-          <a href="#" className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white text-park-blue hover:bg-gray-100 h-12 px-8 py-3 text-lg">
-            Get Started
-          </a>
+          <Button variant="default" className="bg-white text-park-blue hover:bg-gray-100 h-12 px-8 py-3 text-lg">
+            Commencez dès maintenant →
+          </Button>
         </div>
       </section>
       
