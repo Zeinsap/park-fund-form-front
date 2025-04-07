@@ -17,6 +17,21 @@
 
       gtag('config', 'AW-16929593615');
     </script>
+    <!-- Event snippet for Form Submission conversion page -->
+    <script>
+    function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-16929593615/XZemCKTinLUaEI-y1Ig_',
+          'event_callback': callback
+      });
+      return false;
+    }
+    </script>
     <title>Two Zero Solution</title>
     <script>
     (function() {

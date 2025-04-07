@@ -1,10 +1,13 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
 import { PhoneIcon, CheckIcon } from "lucide-react";
+
+declare global {
+  function gtag_report_conversion(url?: string): boolean;
+}
 
 const ContactForm = () => {
   const [step, setStep] = useState<1 | 2>(1);
@@ -20,9 +23,7 @@ const ContactForm = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     
-    // For phone field, only allow numeric input
     if (name === 'phone') {
-      // Replace any non-digit character with empty string
       const numericValue = value.replace(/\D/g, '');
       setFormData(prev => ({ ...prev, [name]: numericValue }));
     } else {
@@ -39,7 +40,6 @@ const ContactForm = () => {
     setStep(1);
   };
 
-  // Function to get cookie value
   const getCookieValue = (name: string) => {
     const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
     return match ? decodeURIComponent(match[2]) : '';
@@ -62,16 +62,13 @@ const ContactForm = () => {
     
     const url = "https://script.google.com/macros/s/AKfycbxX0XHyMSzsI5SYTpa8_1VhkBM2VwQO7Q4i5uxu-uWu6HlyOeO8kzF90Mp5i7u-ws-RNg/exec";
     
-    // Create form data for submission
     const formDataObj = new FormData();
     
-    // Add form fields directly
     formDataObj.append('Prénom', formData.firstName);
     formDataObj.append('Nom', formData.lastName);
     formDataObj.append('Email', formData.email);
     formDataObj.append('Téléphone', `+33${formData.phone}`);
     
-    // Add UTM parameters from cookies
     formDataObj.append('utm_source', getCookieValue('utm_source'));
     formDataObj.append('utm_medium', getCookieValue('utm_medium'));
     formDataObj.append('utm_campaign', getCookieValue('utm_campaign'));
@@ -79,7 +76,6 @@ const ContactForm = () => {
     formDataObj.append('utm_content', getCookieValue('utm_content'));
 
     try {
-      // Use XMLHttpRequest to avoid page redirect
       const xhr = new XMLHttpRequest();
       xhr.open('POST', url, true);
       
@@ -87,6 +83,10 @@ const ContactForm = () => {
         setIsSubmitting(false);
         setIsSubmitted(true);
         toast.success("Merci ! Un conseiller vous contactera dans les 24 heures.");
+        
+        if (typeof gtag_report_conversion === 'function') {
+          gtag_report_conversion();
+        }
       };
       
       xhr.onerror = function() {
@@ -103,7 +103,6 @@ const ContactForm = () => {
     }
   };
 
-  // If the form has been submitted, show the thank you message
   if (isSubmitted) {
     return (
       <div className="bg-gradient-to-br from-park-blue to-blue-600 p-4 sm:p-6 rounded-lg shadow-lg text-center text-white">
