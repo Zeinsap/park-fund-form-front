@@ -2,112 +2,182 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
+import { PhoneIcon } from "lucide-react";
 
 const ContactForm = () => {
+  const [step, setStep] = useState<1 | 2>(1);
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
-    message: '',
-    investment: 'Under $10,000'
+    otpCode: ''
   });
+  const [isValidatingPhone, setIsValidatingPhone] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleOtpChange = (value: string) => {
+    setFormData(prev => ({ ...prev, otpCode: value }));
+  };
+
+  const handleNext = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStep(2);
+  };
+
+  const handlePrevious = () => {
+    setStep(1);
+  };
+
+  const validatePhone = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!formData.phone) {
+      toast.error("Veuillez saisir un numéro de téléphone");
+      return;
+    }
+    setIsValidatingPhone(true);
+    toast.success("Code de validation envoyé");
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real application, you would send this data to your backend
     console.log('Form submitted:', formData);
-    toast.success("Thank you for your interest! We'll be in touch soon.");
+    toast.success("Merci pour votre intérêt ! Un conseiller vous contactera dans les 24 heures.");
     setFormData({
-      name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       phone: '',
-      message: '',
-      investment: 'Under $10,000'
+      otpCode: ''
     });
+    setStep(1);
+    setIsValidatingPhone(false);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg shadow-lg">
-      <h3 className="text-xl font-bold text-park-dark">Interested in investing?</h3>
-      <p className="text-gray-600 mb-4">Fill out this form and we'll get back to you soon.</p>
-      
-      <div>
-        <Label htmlFor="name">Full Name</Label>
-        <Input 
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="John Doe"
-          required
-        />
+    <div className="bg-gradient-to-br from-park-blue to-blue-600 p-6 rounded-lg shadow-lg">
+      <div className="text-white mb-6">
+        <h2 className="text-2xl font-bold mb-2">Prenez part à <span className="text-yellow-400 underline">cette opportunité!</span></h2>
+        <p className="text-sm md:text-base">
+          Remplissez le formulaire ci-dessous et un de nos conseillers vous contactera dans les <span className="underline">24 heures</span> pour vous guider à chaque étape de votre investissement.
+        </p>
       </div>
       
-      <div>
-        <Label htmlFor="email">Email</Label>
-        <Input 
-          id="email"
-          name="email"
-          type="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="john@example.com"
-          required
-        />
+      <div className="mb-6">
+        <p className="text-white mb-2">Step {step} of 2</p>
+        <Progress value={step === 1 ? 50 : 100} className="h-2" />
       </div>
-
-      <div>
-        <Label htmlFor="phone">Phone Number</Label>
-        <Input 
-          id="phone"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          placeholder="(123) 456-7890"
-        />
-      </div>
-
-      <div>
-        <Label htmlFor="investment">Investment Level</Label>
-        <select
-          id="investment"
-          name="investment"
-          value={formData.investment}
-          onChange={handleChange}
-          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          <option>Under $10,000</option>
-          <option>$10,000 - $50,000</option>
-          <option>$50,000 - $100,000</option>
-          <option>$100,000+</option>
-        </select>
-      </div>
-
-      <div>
-        <Label htmlFor="message">Message (Optional)</Label>
-        <Textarea 
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          placeholder="Tell us more about your investment goals..."
-          className="resize-none"
-          rows={3}
-        />
-      </div>
-
-      <Button type="submit" className="w-full bg-park-blue hover:bg-park-blue/90">
-        Submit
-      </Button>
-    </form>
+      
+      {step === 1 ? (
+        <form onSubmit={handleNext} className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Input 
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              placeholder="Prénom"
+              required
+              className="bg-white border-0"
+            />
+            
+            <Input 
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              placeholder="Nom"
+              required
+              className="bg-white border-0"
+            />
+          </div>
+          
+          <Input 
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="example@gmail.com"
+            required
+            className="bg-white border-0"
+          />
+          
+          <Button type="submit" className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-semibold">
+            Suivant
+          </Button>
+        </form>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <div className="flex items-center gap-1">
+                <div className="h-4 w-6 bg-blue-600 relative">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="h-4 w-4 bg-red-500 rounded-full"></div>
+                  </div>
+                </div>
+                <PhoneIcon className="h-4 w-4 text-gray-500" />
+              </div>
+            </div>
+            <Input 
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="Téléphone"
+              required
+              className="bg-white border-0 pl-16"
+            />
+          </div>
+          
+          {!isValidatingPhone ? (
+            <Button 
+              type="button" 
+              onClick={validatePhone}
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              valider mon numéro
+            </Button>
+          ) : (
+            <div className="space-y-4">
+              <div className="bg-white rounded p-2">
+                <InputOTP maxLength={6} value={formData.otpCode} onChange={handleOtpChange}>
+                  <InputOTPGroup>
+                    <InputOTPSlot index={0} />
+                    <InputOTPSlot index={1} />
+                    <InputOTPSlot index={2} />
+                    <InputOTPSlot index={3} />
+                    <InputOTPSlot index={4} />
+                    <InputOTPSlot index={5} />
+                  </InputOTPGroup>
+                </InputOTP>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <Button 
+                  type="button" 
+                  onClick={handlePrevious}
+                  className="bg-gray-700 hover:bg-gray-800 text-white"
+                >
+                  Previous
+                </Button>
+                <Button 
+                  type="submit" 
+                  className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold"
+                >
+                  Je veux être contacté
+                </Button>
+              </div>
+            </div>
+          )}
+        </form>
+      )}
+    </div>
   );
 };
 
