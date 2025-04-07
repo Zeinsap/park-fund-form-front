@@ -14,15 +14,15 @@ const Index = () => {
       <NavBar />
       
       {/* Hero Section with Form */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-park-blue to-blue-500 text-white contact-form-section relative overflow-hidden">
-        {/* Background parking tower image with overlay */}
+      <section className="py-16 md:py-24 text-white contact-form-section relative overflow-hidden">
+        {/* Background parking tower image with reduced opacity */}
         <div className="absolute inset-0 z-0">
           <img 
             src="/lovable-uploads/c99dec98-ba6b-46f5-bc33-bb4832786edf.png" 
             alt="Parking Tower" 
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-park-blue/80 to-blue-500/80"></div>
+          <div className="absolute inset-0 bg-black/30"></div>
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
