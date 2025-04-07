@@ -1,13 +1,14 @@
+
 import React from 'react';
 import FeatureCard from '@/components/FeatureCard';
-import { RocketLaunchIcon, Lightbulb, ShieldCheck } from 'lucide-react';
+import { Rocket, Lightbulb, ShieldCheck } from 'lucide-react';
 
 const IndexPage = () => {
   const features = [
     {
       title: 'Innovation',
       description: 'Notre approche novatrice transforme les défis en opportunités, propulsant votre entreprise vers de nouveaux sommets.',
-      icon: <RocketLaunchIcon />,
+      icon: <Rocket />,
     },
     {
       title: 'Expertise',
