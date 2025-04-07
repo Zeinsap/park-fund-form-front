@@ -8,8 +8,8 @@ const NavBar = () => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center">
           <img 
-            src="/lovable-uploads/8d540128-33f8-48d2-a187-6e15fbff645b.png" 
-            alt="Park Fund Logo" 
+            src="/lovable-uploads/e770a819-1b9f-42e5-869e-5397562b1b04.png" 
+            alt="Two Zero Solution Logo" 
             className="h-12"
           />
         </div>
