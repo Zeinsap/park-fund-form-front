@@ -5,7 +5,7 @@ import ContactForm from '@/components/ContactForm';
 import FeatureCard from '@/components/FeatureCard';
 import FaqSection from '@/components/FaqSection';
 import Footer from '@/components/Footer';
-import { CircleParkingIcon, MapPinIcon, ParkingMeterIcon, CarIcon, ZapIcon } from 'lucide-react';
+import { CircleParkingIcon, MapPinIcon, ParkingMeterIcon, CarIcon, ZapIcon, BarChart3Icon, CircleDollarSignIcon, GlobeIcon } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -57,38 +57,39 @@ const Index = () => {
       {/* About Section */}
       <section id="about" className="py-16">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-park-dark">About Park Fund</h2>
-            <p className="text-lg text-gray-600">
-              Park Fund specializes in acquiring, developing, and managing premium parking assets 
-              across major urban centers. We provide investors with access to stable, cash-flowing 
-              real estate investments with significant upside potential.
-            </p>
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-park-dark">Pourquoi investir</h2>
           </div>
           
-          <div className="mt-12 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-park-blue/10 text-park-blue mb-4">
-                <span className="text-3xl font-bold">10+</span>
+              <div className="flex justify-center mb-6">
+                <div className="inline-flex items-center justify-center w-20 h-20">
+                  <BarChart3Icon className="w-16 h-16 text-park-blue" />
+                </div>
               </div>
-              <h3 className="text-xl font-bold mb-2 text-park-dark">Years Experience</h3>
-              <p className="text-gray-600">Decade of expertise in parking investments</p>
+              <h3 className="text-xl font-bold mb-3 text-park-dark">Un marché en pleine expansion</h3>
+              <p className="text-gray-600">Bénéficiez d'un secteur soutenu par des politiques publiques favorables.</p>
             </div>
             
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-park-blue/10 text-park-blue mb-4">
-                <span className="text-3xl font-bold">50+</span>
+              <div className="flex justify-center mb-6">
+                <div className="inline-flex items-center justify-center w-20 h-20">
+                  <CircleDollarSignIcon className="w-16 h-16 text-park-blue" />
+                </div>
               </div>
-              <h3 className="text-xl font-bold mb-2 text-park-dark">Properties</h3>
-              <p className="text-gray-600">Managing parking assets across the country</p>
+              <h3 className="text-xl font-bold mb-3 text-park-dark">Des rendements attractifs</h3>
+              <p className="text-gray-600">Tirez parti d'un investissement pouvant générer des revenus annuels fiables.</p>
             </div>
             
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-park-blue/10 text-park-blue mb-4">
-                <span className="text-3xl font-bold">9%</span>
+              <div className="flex justify-center mb-6">
+                <div className="inline-flex items-center justify-center w-20 h-20">
+                  <GlobeIcon className="w-16 h-16 text-park-blue" />
+                </div>
               </div>
-              <h3 className="text-xl font-bold mb-2 text-park-dark">Average Return</h3>
-              <p className="text-gray-600">Consistent returns for our investors</p>
+              <h3 className="text-xl font-bold mb-3 text-park-dark">Investissement écologique</h3>
+              <p className="text-gray-600">Contribuez à la transition énergétique tout en faisant fructifier votre capital.</p>
             </div>
           </div>
         </div>
