@@ -63,33 +63,33 @@ const ContactForm = () => {
     };
 
     try {
-      // Using JSONP approach with form submission to bypass CORS issues
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = url;
-      form.target = '_blank'; // Opens response in a new tab
+      // Create a form data object for submission
+      const formDataObj = new FormData();
+      formDataObj.append('data', JSON.stringify(submissionData));
       
-      // Create a hidden input field for the JSON data
-      const hiddenField = document.createElement('input');
-      hiddenField.type = 'hidden';
-      hiddenField.name = 'data';
-      hiddenField.value = JSON.stringify(submissionData);
-      form.appendChild(hiddenField);
+      // Use XMLHttpRequest to avoid page redirect
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', url, true);
       
-      // Append form to the document, submit it, and remove it
-      document.body.appendChild(form);
-      form.submit();
-      document.body.removeChild(form);
+      xhr.onload = function() {
+        setIsSubmitting(false);
+        toast.success("Merci ! Un conseiller vous contactera dans les 24 heures.");
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: ''
+        });
+        setStep(1);
+      };
       
-      setIsSubmitting(false);
-      toast.success("Merci ! Un conseiller vous contactera dans les 24 heures.");
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: ''
-      });
-      setStep(1);
+      xhr.onerror = function() {
+        setIsSubmitting(false);
+        toast.error("Erreur de connexion. Veuillez réessayer.");
+        console.error("Form submission error");
+      };
+      
+      xhr.send(formDataObj);
     } catch (error) {
       setIsSubmitting(false);
       toast.error("Erreur de connexion. Veuillez réessayer.");
@@ -120,7 +120,7 @@ const ContactForm = () => {
               onChange={handleChange}
               placeholder="Prénom"
               required
-              className="bg-white border-0"
+              className="bg-white border-0 text-gray-900"
             />
             
             <Input 
@@ -129,7 +129,7 @@ const ContactForm = () => {
               onChange={handleChange}
               placeholder="Nom"
               required
-              className="bg-white border-0"
+              className="bg-white border-0 text-gray-900"
             />
           </div>
           
@@ -140,7 +140,7 @@ const ContactForm = () => {
             onChange={handleChange}
             placeholder="example@gmail.com"
             required
-            className="bg-white border-0"
+            className="bg-white border-0 text-gray-900"
           />
           
           <Button 
@@ -163,7 +163,7 @@ const ContactForm = () => {
               onChange={handleChange}
               placeholder="Téléphone (sans +33)"
               required
-              className="bg-white border-0 pl-12"
+              className="bg-white border-0 pl-12 text-gray-900"
               type="tel"
               inputMode="numeric"
             />
