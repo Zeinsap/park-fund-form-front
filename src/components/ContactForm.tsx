@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
-import { PhoneIcon } from "lucide-react";
+import { PhoneIcon, CheckIcon } from "lucide-react";
 
 const ContactForm = () => {
   const [step, setStep] = useState<1 | 2>(1);
@@ -15,6 +15,7 @@ const ContactForm = () => {
     phone: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -42,6 +43,17 @@ const ContactForm = () => {
   const getCookieValue = (name: string) => {
     const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
     return match ? decodeURIComponent(match[2]) : '';
+  };
+
+  const resetForm = () => {
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: ''
+    });
+    setStep(1);
+    setIsSubmitted(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -73,14 +85,8 @@ const ContactForm = () => {
       
       xhr.onload = function() {
         setIsSubmitting(false);
+        setIsSubmitted(true);
         toast.success("Merci ! Un conseiller vous contactera dans les 24 heures.");
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: ''
-        });
-        setStep(1);
       };
       
       xhr.onerror = function() {
@@ -96,6 +102,32 @@ const ContactForm = () => {
       console.error("Form submission error:", error);
     }
   };
+
+  // If the form has been submitted, show the thank you message
+  if (isSubmitted) {
+    return (
+      <div className="bg-gradient-to-br from-park-blue to-blue-600 p-4 sm:p-6 rounded-lg shadow-lg text-center text-white">
+        <div className="flex flex-col items-center justify-center space-y-4 sm:space-y-6 py-4">
+          <div className="bg-green-100 rounded-full p-3 sm:p-4">
+            <CheckIcon className="h-6 w-6 sm:h-8 sm:w-8 text-green-600" />
+          </div>
+          
+          <h2 className="text-xl sm:text-2xl font-bold">Merci !</h2>
+          
+          <p className="text-sm sm:text-base max-w-xs mx-auto">
+            Votre demande a été envoyée avec succès. Nous vous contacterons très bientôt.
+          </p>
+          
+          <Button 
+            onClick={resetForm}
+            className="bg-white text-park-blue hover:bg-gray-100 mt-4 text-sm sm:text-base px-4 py-2"
+          >
+            Soumettre un autre message
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-gradient-to-br from-park-blue to-blue-600 p-4 sm:p-6 rounded-lg shadow-lg">
