@@ -43,7 +43,7 @@ const Index = () => {
                   <img 
                     src="/lovable-uploads/330f78f8-3ae8-4f01-a04c-dd2e4296392c.png" 
                     alt="Partenaires: Yespark, Vinci Immobilier, Indigo" 
-                    className="w-full max-w-xs h-auto"
+                    className="w-full max-w-md h-auto"
                   />
                 </div>
               </div>
