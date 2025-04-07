@@ -17,6 +17,7 @@ const NavBar = () => {
           <Button 
             variant="outline" 
             className="hidden md:inline-flex border-park-blue text-park-blue hover:bg-park-blue hover:text-white text-base"
+            onClick={() => document.querySelector('.contact-form-section')?.scrollIntoView({ behavior: 'smooth' })}
           >
             Découvrir cette opportunité rentable
           </Button>
