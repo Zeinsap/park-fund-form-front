@@ -34,6 +34,18 @@ const Index = () => {
                   Découvrir cette opportunité rentable →
                 </a>
               </div>
+
+              {/* Partners section */}
+              <div className="mt-8">
+                <p className="text-sm text-gray-200 mb-3">En partenariat avec</p>
+                <div className="bg-[#2D3A3F] p-3 md:p-4 rounded flex items-center justify-between">
+                  <img 
+                    src="/lovable-uploads/ee4579b7-d423-47c1-996a-16294ec09f5c.png" 
+                    alt="Partenaires: Yespark, Vinci Immobilier, Indigo" 
+                    className="w-full h-auto"
+                  />
+                </div>
+              </div>
             </div>
             <div>
               <ContactForm />
